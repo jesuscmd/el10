@@ -19,7 +19,7 @@ angular.module('sortable', ['ui.sortable'])
         	});
         },
         error: function (responseData, textStatus, errorThrown) {
-            console.log("error en la conexión");
+            console.log(responseData);
         }
     });
   
