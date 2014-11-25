@@ -1,8 +1,7 @@
 <?php
-  define ( 'DB_HOST', 'localhost' );
-  define ( 'DB_USER', 'appel10_el10' );
-  define ( 'DB_PASS', 'eldiez' );
-  define ( 'DB_NAME', 'appel10_el10' );
+
+  require('connection.php');
+
   $var = $_POST['idArticulo'];
   $con = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);  
   $query = "SELECT * FROM menu WHERE id = $var";

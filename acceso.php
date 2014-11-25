@@ -2,11 +2,18 @@
 if (!isset($_SESSION)) {
   session_start();
 }
+/*
+$server="localhost";
+$database="appel10_el10";
+$dbuser="appel10_el10"; 
+$dbpass="eldiez";*/
+
 
 $server="localhost"; /* Nuestro server mysql */
 $database="appel10_el10"; /* Nuestra base de datos */
-$dbuser="appel10_el10"; /* Nuestro user mysql */
-$dbpass="eldiez"; /*Nuestro password mysql */
+$dbuser="root"; /* Nuestro user mysql */
+$dbpass=""; /*Nuestro password mysql */
+
 
 $conexion = mysql_connect($server,$dbuser,$dbpass);
 if (!$conexion){
