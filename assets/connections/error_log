@@ -1,0 +1,4 @@
+[19-Nov-2014 17:32:28 America/Chicago] PHP Catchable fatal error:  Object of class mysqli_result could not be converted to string in /home/appel10/public_html/el10/assets/connections/connectionDB.php on line 45
+[20-Nov-2014 12:04:53 America/Chicago] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/appel10/public_html/el10/assets/connections/connectionDB.php on line 7
+[20-Nov-2014 12:07:05 America/Chicago] PHP Parse error:  syntax error, unexpected T_STRING in /home/appel10/public_html/el10/assets/connections/connectionDB.php on line 7
+[20-Nov-2014 14:53:23 America/Chicago] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting ')' in /home/appel10/public_html/el10/assets/connections/connectionDB.php on line 29

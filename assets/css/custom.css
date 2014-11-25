@@ -1,0 +1,106 @@
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+.menuUsuario{
+	margin-top: 14px;
+}
+/*SORDABLE ELEMENT*/
+
+#sortable { 
+	list-style-type: none; 
+	margin: 0; 
+	padding: 0;
+}
+#sortable li { 
+	margin: 3px 0; 
+	padding: 1em; 
+	min-height: 50px;
+}
+/*#sortable li span { 
+	margin-left: -1.3em; 
+}*/
+
+/*responsive styles*/
+.itemNombre{
+	display: table;
+	height: 34px;
+}
+.itemNombre p{
+	display: table-cell;
+	vertical-align: middle;
+}
+/*loader image*/
+
+#files canvas{
+	max-width: 100%;
+}
+
+/*ajustes maqueta*/
+
+.mensajes{
+	display: none;
+}
+
+
+
+
+
+
+.list {
+	list-style: none outside none;
+	margin: 10px 0 30px;
+}
+
+.apps-container {
+  border: 2px dashed #25A8DE;
+  padding: 3px 5px;
+  min-width:200px;
+}
+
+.app {
+	padding: 5px 10px;
+	margin: 5px 0;
+	border: 1px solid #94D8FA;
+	border-radius: 5px;
+	background-color: #d9edf7;
+	cursor: move;
+	min-height:50px;
+}
+
+
+/***  Extra ***/
+
+body {
+	font-family: Verdana, 'Trebuchet ms', Tahoma;
+}
+
+.logList {
+	margin-top: 20px;
+	width: 250px;
+	min-height: 300px;
+	padding: 5px 15px;
+	border: 5px solid #000;
+	border-radius: 15px;
+}
+
+.logItem {
+  margin-bottom: 10px;
+}
+
+.logList:before {
+	content: 'log';
+	padding: 0 5px;
+	position: relative;
+	top: -1.1em;
+	background-color: #FFF;
+}
+
+.floatleft {
+  float: left;
+	width: 100%;
+}
+
+.clear {
+  clear: both;
+}

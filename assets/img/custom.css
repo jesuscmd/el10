@@ -1,0 +1,40 @@
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+.menuUsuario{
+	margin-top: 14px;
+}
+
+/*SORDABLE ELEMENT*/
+
+#sortable { 
+	list-style-type: none; 
+	margin: 0; 
+	padding: 0;
+}
+#sortable li { 
+	margin: 3px 0; 
+	padding: 1em; 
+	min-height: 50px;
+}
+#sortable li span { 
+	margin-left: -1.3em; 
+}
+
+/*responsive styles*/
+.itemNombre{
+	line-height: 36px;
+}
+
+/*loader image*/
+
+#imagePreview {
+    width: 74px;
+    height: 74px;
+    background-position: center center;
+    background-size: cover;
+    -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
+    display: inline-block;
+    background-image: url("../img/imageDefault.png");
+}
