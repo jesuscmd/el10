@@ -5,6 +5,7 @@ angular.module('sortable', ['ui.sortable'])
 .controller('categoriasController', ['$scope', function($scope) {
 
 	$scope.elementos;
+	$scope.categorias;
 	$scope.sortingLog = [];
 
 	$.ajax({
@@ -14,8 +15,9 @@ angular.module('sortable', ['ui.sortable'])
         success: function(responseData, textStatus, jqXHR) {
         	console.log(responseData);
             $scope.$apply(function () {
-            	$scope.elementos = responseData;
-            	$scope.rawScreens = $scope.elementos
+            	$scope.elementos = responseData.articulos;
+            	$scope.categorias = responseData.categorias;
+            	//$scope.rawScreens = $scope.elementos.nombre
         	});
         },
         error: function (responseData, textStatus, errorThrown) {
@@ -39,16 +41,13 @@ angular.module('sortable', ['ui.sortable'])
 	    }
   	};
 
-  	$scope.editarItem = function(i1, i2, e) {
-  		//$scope.editando = true;
+  	$scope.editarItem = function(e) {
 
   		//$scope.elementos[i1][i2]["editando"] = true;
   		//console.log($scope.elementos[i1].articulos[i2]);
   		
   		e.pidiendoDatos = true;
 
-
-  		//$scope.elementos[i1].articulos[i2]["editando"] = true;
 
   		$.ajax({
 	        type: 'POST',
@@ -63,18 +62,43 @@ angular.module('sortable', ['ui.sortable'])
 	        	e.imagen = responseData.imagen;
 	        	e.uva = responseData.uva;
 	        	e.descripcion = responseData.descripcion;
+	        	e.categorias = responseData.categoria;
 	        	e.pidiendoDatos = false;
 	        	$scope.$apply(function () {
 	        		e.editando = true;
 	        	});
+	        	console.log(e);
+
 	        },
 	        error: function (responseData, textStatus, errorThrown) {
-	            console.log("error en la conexión");
+	            console.log(responseData);
 	        }
 	    });
   		
 
   	}
+  	$scope.actualizarElemento = function(e) {
+  	 	console.log("mono");
+  	 	console.log(e);
+  	 	if(e.personalizacion == true){
+  	 		e.personalizacion = 1;
+  	 	} else{
+  	 		e.personalizacion = 0;
+  	 	}
+  	 	$.ajax({
+	        type: 'POST',
+	        url: "assets/connections/connectionSA.php",
+	        dataType: 'json',
+	        data: {articulo : e},
+	        success: function(responseData, textStatus, jqXHR) {
+	        	console.log(responseData.responseText);
+	        },
+	        error: function (responseData, textStatus, errorThrown) {
+	            console.log(responseData);
+	        }
+	    });
+
+  	 }
 
 
 

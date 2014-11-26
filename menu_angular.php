@@ -131,7 +131,7 @@
 				<div class="col-md-12 floatleft items">
 					<div ng-repeat="(noCategoria, categoria) in elementos" >
 						<div class="col-md-12 tituloCategoria">
-							<h2>{{noCategoria}} {{categoria.nombre}}</h2>
+							<h2>{{noCategoria}} {{categoria.nombre}} <span class="text-right small">{{categoria.seccion}}</span></h2>
 						</div>
 						<div ui-sortable="sortableOptions" class="apps-container screen floatleft" ng-model="elementos[$index].articulos">
 							<div class="app" id="elemento{{elemento.0}}" ng-repeat="(artindex, elemento) in elementos[$index].articulos | orderBy:'orden'">
@@ -140,7 +140,7 @@
 							  			<p>{{artindex}} {{elemento.1}}</p>
 							  		</div>
 							  		<div class="col-md-2">
-							  			<a class="btn btn-default btn-block accionEditar" ng-click="editarItem(noCategoria,artindex, elemento)" ng-disabled="elemento.pidiendoDatos == true">
+							  			<a class="btn btn-default btn-block accionEditar" ng-click="editarItem(elemento)" ng-disabled="elemento.pidiendoDatos == true">
 							  				<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 							  				EDITAR
 							  			</a>
@@ -162,59 +162,72 @@
 								    	</div>
 								    	<form role="form">
 								    		<div class="row">
-								    			<div class="col-md-6">
+								    			<div ng-class="(categoria.seccion=='BEBIDAS') ? 'col-md-4' : 'col-md-6'">
 								    				<div class="form-group">
 								    					<label for="productoNombre">NOMBRE DEL PRODUCTO</label>
-								    					<input type="text" class="form-control" id="productoNombre" placeholder="Nombre del producto" value="{{elemento.1}}">
+								    					<input ng-model="elemento.1" type="text" class="form-control" id="productoNombre" placeholder="Nombre del producto">
 								    				</div>
 								    			</div>
-								    			<div class="col-md-4">
+								    			<div class="col-md-2" ng-show="categoria.seccion =='BEBIDAS'">
+								    				<div class="form-group">
+								    					<label for="productoPrecio">Mililitros</label>
+													    <div class="input-group">
+													      <div class="input-group-addon">ml</div>
+								    					<input type="number" step="any" class="form-control" id="productoMl" placeholder="0" ng-model="elemento.ml">
+													    </div>
+													  </div>
+								    			</div>
+								    			<div class="col-md-2">
 								    				<div class="form-group">
 								    					<label for="productoCategoria">CATEGORÍA</label>
-								    					<!--<select class="form-control" id="productoCategoria" >
-															<option value="{{categoria.nombre}}" label="{{categoria.nombre}}" ng-repeat="e in elementos"></option>
-								    					</select>-->
+								    					<select class="form-control" id="productoCategoria" ng-model= "elemento.categorias" ng-options="categoria for categoria in categorias">
+								    					</select>
 								    				</div>
 								    			</div>
 								    			<div class="col-md-2">
 								    				<div class="form-group">
 								    					<label for="productoPrecio">PRECIO</label>
-								    					<input type="text" class="form-control" id="productoPrecio" placeholder="0.00" value="{{elemento.precio}}">
-								    				</div>
+													    <div class="input-group">
+													      <div class="input-group-addon">$</div>
+								    					<input type="number" step="any" class="form-control" id="productoPrecio" placeholder="0.00" ng-model="elemento.precio">
+													    </div>
+													  </div>
 								    			</div>
-								    		</div>
-								    		<div class="row" id="vinosCampos" ng-if="elemento.uva != ''">
-								    			<div class="col-md-3">
-								    				<div class="form-group">
-								    					<label for="productoUva">UVA</label>
-								    					<input type="text" class="form-control" id="productoUva" placeholder="Uva" value="{{elemento.uva}}">
-								    				</div>
-								    			</div>
-								    			<div class="col-md-3">
-								    				<div class="form-group">
-								    					<label for="productoMaridaje">MARIDAJE</label>
-								    					<input type="text" class="form-control" id="productoMaridaje" placeholder="Maridaje" value="{{elemento.maridaje}}">
-								    				</div>
-								    			</div>
-								    			<div class="col-md-3">
-								    				<div class="form-group">
-								    					<label for="productoMl">ml</label>
-								    					<input type="number" class="form-control" id="productoMl" placeholder="ml"  value="{{elemento.ml}}">
-								    				</div>
-								    			</div>
-								    			<div class="col-md-3">
+								    			<div class="col-md-2">
 								    				<div class="checkbox">
 								    					<label> <br>
-															<input type="checkbox"> Personalizable
+															<input type="checkbox" ng-model="elemento.personalizacion" > Personalizable
 														</label>
 								    				</div>
 								    			</div>
+								    		</div>
+								    		<hr>
+								    		<div class="row" id="vinosCampos" ng-show="categoria.seccion=='VINOS'">
+								    			<div class="col-md-4">
+								    				<div class="form-group">
+								    					<label for="productoUva">UVA</label>
+								    					<input type="text" class="form-control" id="productoUva" placeholder="Uva" ng-model="elemento.uva">
+								    				</div>
+								    			</div>
+								    			<div class="col-md-4">
+								    				<div class="form-group">
+								    					<label for="productoMaridaje">MARIDAJE</label>
+								    					<input type="text" class="form-control" id="productoMaridaje" placeholder="Maridaje" ng-model="elemento.maridaje">
+								    				</div>
+								    			</div>
+								    			<div class="col-md-4">
+								    				<div class="form-group">
+								    					<label for="productoMl">ml</label>
+								    					<input type="number" class="form-control" id="productoMl" placeholder="ml"  ng-model="elemento.ml">
+								    				</div>
+								    			</div>
+								    			<hr>
 								    		</div>
 								    		<div class="row">
 								    			<div class="col-md-6">
 								    				<div class="form-group">
 								    					<label for="productoDescripcion">DESCRIPCIÓN</label>
-								    					<textarea class="form-control"  id="productoDescripcion" rows="3">{{elemento.descripcion}}</textarea>
+								    					<textarea class="form-control"  id="productoDescripcion" rows="3" ng-model="elemento.descripcion"></textarea>
 								    				</div>
 								    			</div>
 								    			<div class="col-md-6">
@@ -256,14 +269,14 @@
 								    		</div>
 								    		<div class="row">
 								    			<div class="col-md-3">
-								    				<a class="btn btn-default cerrarEdicion btn-block">
+								    				<a class="btn btn-default cerrarEdicion btn-block" ng-click="elemento.editando = false">
 								    					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								    					CANCELAR
 								    				</a>
 								    			</div>
 								    			<div class="col-md-6"></div>
 								    			<div class="col-md-3">
-								    				<button type="submit" class="btn btn-primary btn-block">
+								    				<button type="submit" class="btn btn-primary btn-block" ng-click="actualizarElemento(elemento)">
 								    					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 								    					ACTUALIZAR
 								    				</button>
